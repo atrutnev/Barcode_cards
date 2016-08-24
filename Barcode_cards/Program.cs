@@ -21,8 +21,6 @@ namespace Barcode_cards
                 int a = 0;
                 int b = 0;
                 int c = 0;
-                int d = 0;
-                int e = 0;
                 if (i < 10)
                 {
                     TempBarcode = BarcodePrefix + "000" + i;
@@ -51,15 +49,13 @@ namespace Barcode_cards
                         b += (int)char.GetNumericValue(TempBarcode[j]);
                     }
                 }
-                c = a * 3 + b;
-                string Sum = c.ToString();
-                d = (int)char.GetNumericValue(Sum[Sum.Length - 1]);
-                e = 10 - d;
-                if (e == 10)
+                string Sum = (a * 3 + b).ToString();
+                c = 10 - ((int)char.GetNumericValue(Sum[Sum.Length - 1]));
+                if (c == 10)
                 {
-                    e = 0;
+                    c = 0;
                 }
-                BarcodeResult = TempBarcode + e;
+                BarcodeResult = TempBarcode + c;
                 sw.Write(Convert.ToString(i));
                 sw.Write("\t\t\t");
                 sw.WriteLine(BarcodeResult);
